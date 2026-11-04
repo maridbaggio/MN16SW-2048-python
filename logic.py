@@ -56,17 +56,21 @@ def add_two(mat):
 # 2 marks for getting two of the three conditions
 # 3 marks for correct checking
 
-def game_state(mat):
-    # check for win cell
-    for i in range(len(mat)):
-        for j in range(len(mat[0])):
-            if mat[i][j] == 2048:
-                return 'win'
-    # check for any zero entries
+def has_empty_cell(mat):
     for i in range(len(mat)):
         for j in range(len(mat[0])):
             if mat[i][j] == 0:
-                return 'not over'
+                return True
+
+    return False
+
+def game_state(mat):
+    # check for win cell
+
+    if has_empty_cell(mat):
+        return 'not over'
+
+    # restante do código original de game_state()
     # check for same cells that touch each other
     for i in range(len(mat)-1):
         # intentionally reduced to check the row on the right and below
